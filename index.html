@@ -24,7 +24,7 @@
             color: #fff;
             padding: 3rem 0;
             text-align: center;
-            border-bottom: 1px solid #000;
+            position: relative;
         }
 
         header h1 {
@@ -41,40 +41,110 @@
             opacity: 0.8;
         }
 
-        /* Navigation */
-        nav {
-            background-color: #fff;
-            border-bottom: 1px solid #000;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav ul {
-            max-width: 1200px;
-            margin: 0 auto;
-            list-style: none;
+        /* Hamburger Menu Button */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            padding: 0 20px;
+            gap: 5px;
+            transition: all 0.3s ease;
         }
 
-        nav a {
+        .menu-btn:hover {
+            background-color: #333;
+        }
+
+        .menu-btn span {
             display: block;
-            padding: 1.2rem 2rem;
-            color: #000;
+            width: 25px;
+            height: 2px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: #000;
+            z-index: 1000;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            padding-top: 80px;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 1.5rem 2rem;
+            color: #fff;
             text-decoration: none;
-            font-weight: 400;
-            font-size: 0.9rem;
+            font-weight: 300;
+            font-size: 1.1rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
+            border-bottom: 1px solid #333;
         }
 
-        nav a:hover {
-            border-bottom: 2px solid #000;
+        .sidebar a:hover {
+            background-color: #fff;
+            color: #000;
+            padding-left: 2.5rem;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Container */
@@ -269,45 +339,43 @@
                 font-size: 2rem;
             }
 
-            nav ul {
-                flex-direction: column;
-            }
-
-            nav a {
-                text-align: center;
-                border-bottom: 1px solid #e0e0e0;
-            }
-
-            nav a:hover {
-                border-bottom: 1px solid #000;
+            .section-title {
+                font-size: 1.5rem;
             }
 
             .leaders-grid {
                 grid-template-columns: 1fr;
             }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
         }
     </style>
 </head>
 <body>
+    <!-- Hamburger Menu Button -->
+    <button class="menu-btn" id="menuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#home" onclick="closeMenu()">Home</a></li>
+            <li><a href="#leaders" onclick="closeMenu()">Leaders</a></li>
+            <li><a href="#about" onclick="closeMenu()">About</a></li>
+            <li><a href="#history" onclick="closeMenu()">History</a></li>
+            <li><a href="#events" onclick="closeMenu()">Events</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
     <header>
         <h1>MURASING COMMUNITY</h1>
         <p>Preserving Heritage · Building Future</p>
     </header>
-
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#leaders">Leaders</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#history">History</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
     <div class="container">
         <div class="instructions">
@@ -408,5 +476,23 @@
         <p>© 2026 Murasing Community</p>
         <p>Preserving heritage, building future</p>
     </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        menuBtn.addEventListener('click', function() {
+            menuBtn.classList.toggle('active');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        function closeMenu() {
+            menuBtn.classList.remove('active');
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    </script>
 </body>
 </html>
