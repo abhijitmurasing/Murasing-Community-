@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murasing Community - Official Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #667eea;
+            color: white;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Leaders Section */
+        .leaders-section {
+            margin-top: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .leader-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .leader-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .leader-info {
+            padding: 1.5rem;
+        }
+
+        .leader-name {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .leader-position {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .leader-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .leader-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .contact-item::before {
+            content: '📧';
+            margin-right: 0.5rem;
+        }
+
+        .contact-item.phone::before {
+            content: '📞';
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav a {
+                text-align: center;
+            }
+
+            .leaders-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Instructions Box */
+        .instructions {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+
+        .instructions ul {
+            margin-left: 1.5rem;
+            color: #856404;
+        }
+
+        .instructions li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Murasing Community</h1>
+            <p>Preserving Our Heritage, Building Our Future</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#leaders">Community Leaders</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#history">History</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Instructions for updating -->
+        <div class="instructions">
+            <h3>📝 How to Update This Website:</h3>
+            <ul>
+                <li><strong>To replace leader photos:</strong> Replace the emoji (👤) in the leader-image div with an actual image tag: <code>&lt;img src="photo.jpg" alt="Name"&gt;</code></li>
+                <li><strong>To change names and info:</strong> Simply edit the text inside each leader-card section</li>
+                <li><strong>To add more leaders:</strong> Copy and paste an entire leader-card div and modify the information</li>
+                <li><strong>To change colors:</strong> Look for #667eea and #764ba2 in the style section and replace with your community colors</li>
+                <li><strong>Once you're done editing:</strong> Save this file and upload it to your web hosting</li>
+            </ul>
+        </div>
+
+        <div class="intro-section" id="home">
+            <h2>Welcome to Murasing Community</h2>
+            <p>This is the official website of the Murasing community. Here you'll find important information about our community, our leaders, upcoming events, and our rich cultural heritage. We are dedicated to preserving our traditions while embracing progress and unity.</p>
+        </div>
+
+        <section class="leaders-section" id="leaders">
+            <h2 class="section-title">Our Community Leaders</h2>
+            
+            <div class="leaders-grid">
+                <!-- Leader Card 1 -->
+                <div class="leader-card">
+                    <div class="leader-image">👤</div>
+                    <div class="leader-info">
+                        <h3 class="leader-name">Rajesh Kumar Murasing</h3>
+                        <p class="leader-position">Community President</p>
+                        <p class="leader-description">Leading our community with dedication for over 15 years. Focused on youth development and cultural preservation.</p>
+                        <div class="leader-contact">
+                            <span class="contact-item phone">+91 98765 43210</span>
+                            <span class="contact-item">president@murasing.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader Card 2 -->
+                <div class="leader-card">
+                    <div class="leader-image">👤</div>
+                    <div class="leader-info">
+                        <h3 class="leader-name">Sunita Devi Murasing</h3>
+                        <p class="leader-position">Vice President</p>
+                        <p class="leader-description">Dedicated to women empowerment and education initiatives within our community.</p>
+                        <div class="leader-contact">
+                            <span class="contact-item phone">+91 98765 43211</span>
+                            <span class="contact-item">vicepresident@murasing.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader Card 3 -->
+                <div class="leader-card">
+                    <div class="leader-image">👤</div>
+                    <div class="leader-info">
+                        <h3 class="leader-name">Prakash Singh Murasing</h3>
+                        <p class="leader-position">General Secretary</p>
+                        <p class="leader-description">Managing community affairs and coordinating events. Contact for general inquiries and support.</p>
+                        <div class="leader-contact">
+                            <span class="contact-item phone">+91 98765 43212</span>
+                            <span class="contact-item">secretary@murasing.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader Card 4 -->
+                <div class="leader-card">
+                    <div class="leader-image">👤</div>
+                    <div class="leader-info">
+                        <h3 class="leader-name">Meera Murasing</h3>
+                        <p class="leader-position">Cultural Affairs Head</p>
+                        <p class="leader-description">Preserving and promoting our traditional arts, festivals, and cultural programs.</p>
+                        <div class="leader-contact">
+                            <span class="contact-item phone">+91 98765 43213</span>
+                            <span class="contact-item">cultural@murasing.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader Card 5 -->
+                <div class="leader-card">
+                    <div class="leader-image">👤</div>
+                    <div class="leader-info">
+                        <h3 class="leader-name">Anil Murasing</h3>
+                        <p class="leader-position">Youth Coordinator</p>
+                        <p class="leader-description">Engaging young community members in social activities and skill development programs.</p>
+                        <div class="leader-contact">
+                            <span class="contact-item phone">+91 98765 43214</span>
+                            <span class="contact-item">youth@murasing.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader Card 6 -->
+                <div class="leader-card">
+                    <div class="leader-image">👤</div>
+                    <div class="leader-info">
+                        <h3 class="leader-name">Kavita Murasing</h3>
+                        <p class="leader-position">Treasurer</p>
+                        <p class="leader-description">Managing community funds and financial planning for various community initiatives.</p>
+                        <div class="leader-contact">
+                            <span class="contact-item phone">+91 98765 43215</span>
+                            <span class="contact-item">treasurer@murasing.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Murasing Community. All rights reserved.</p>
+        <p>Preserving our heritage, building our future together.</p>
+    </footer>
+</body>
+</html>
